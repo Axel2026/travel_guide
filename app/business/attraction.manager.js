@@ -3,7 +3,7 @@ import attractionDAO from "../DAO/attractionDAO.js";
 
 function attractionManager() {
 
-    function getAttractionsByCityId(cityId, response){
+    function getAttractionsByCityId(cityId, response) {
         attractionDAO.model.find({cityId: cityId})
             .then((data) => {
                 response.json(data);
@@ -13,7 +13,7 @@ function attractionManager() {
             });
     }
 
-    function getAttractionsByCityType(type, response){
+    function getAttractionsByCityType(type, response) {
         attractionDAO.model.find({type: type})
             .then((data) => {
                 response.json(data);
