@@ -9,6 +9,9 @@ const attractionSchema = new mongoose.Schema({
     cityId: {type: String, required: true, unique: false},
     image: {type: String, required: true, unique: false},
     type: {type: String, required: true, unique: false},
+    address: {type: String, required: false, unique: false},
+    phone_number: {type: String, required: false, unique: false},
+    website: {type: String, required: false, unique: false},
 }, {
     collection: 'Attraction'
 });
