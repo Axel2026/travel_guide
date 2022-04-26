@@ -28,7 +28,7 @@ const CityOptionButton = ({id, name, coordinates, image, navigation, currentLoca
     }
 
     function navigateToCityAttractions() {
-        navigation.navigate('CityAttractions', {cityId: id})
+        navigation.navigate('CityMenu', {cityId: id, currentLocation: currentLocation})
     }
 
     if (distance !== undefined) {
@@ -69,11 +69,11 @@ const styles = StyleSheet.create({
     city_option_button_text: {
         color: 'black',
         fontFamily: 'helvetica-rounded-bold',
-        fontSize: 30,
-        marginTop: -10,
+        fontSize: 25,
+        marginTop: -15,
         paddingBottom: 0,
         paddingLeft: 120,
-        paddingRight: 45,
+        paddingRight: 60,
     },
 
     city_option_button_distance_container: {

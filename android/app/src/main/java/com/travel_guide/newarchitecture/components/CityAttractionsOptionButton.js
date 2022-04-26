@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import Geolocation from "@react-native-community/geolocation";
 import {getPreciseDistance} from "geolib";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 
 
-const CityAttractionsOptionButton = ({id, name, coordinates, image, navigation, description, type, currentLocation}) => {
+const CityAttractionsOptionButton = ({name, coordinates, image, navigation, description, type, currentLocation, address, phoneNumber, website}) => {
 
     const [distance, setDistance] = useState()
+
 
     useEffect(() => {
         getDistanceToAttraction()
@@ -16,12 +17,33 @@ const CityAttractionsOptionButton = ({id, name, coordinates, image, navigation, 
 
     function navigateToAttractionDetails() {
         navigation.navigate('CityAttractionDetails', {
-            attractionId: id,
             attractionName: name,
             attractionImage: image,
             attractionDescription: description,
             attractionDistance: distance,
+            attractionCoordinates: coordinates,
+            attractionAddress: address,
+            attractionPhoneNumber: phoneNumber,
+            attractionWebsite: website,
+            currentLocation: currentLocation,
         })
+    }
+
+    function getAttractionTypeIcon() {
+        switch (type) {
+            case "monument":
+                return <MaterialCommunityIcons style={styles.city_attractions_option_button_icon} name="church"
+                                               size={35}/>;
+
+            case 'food':
+                return <MaterialCommunityIcons style={styles.city_attractions_option_button_icon} name="food"
+                                               size={35}/>;
+
+            default:
+                return <MaterialCommunityIcons style={styles.city_attractions_option_button_icon}
+                                               name="alert-decagram"
+                                               size={35}/>;
+        }
     }
 
     async function getDistanceToAttraction() {
@@ -51,6 +73,9 @@ const CityAttractionsOptionButton = ({id, name, coordinates, image, navigation, 
                         {distance}
                     </Text>
                 </View>
+                <View style={styles.city_attractions_option_button_icon_container}>
+                    {getAttractionTypeIcon()}
+                </View>
                 <Text style={styles.city_attractions_option_button_text}>
                     {name}
                 </Text>
@@ -74,11 +99,11 @@ const styles = StyleSheet.create({
     city_attractions_option_button_text: {
         color: 'black',
         fontFamily: 'helvetica-rounded-bold',
-        fontSize: 30,
-        marginTop: -25,
+        fontSize: 25,
+        marginTop: -15,
         paddingBottom: 0,
         paddingLeft: 120,
-        paddingRight: 40,
+        paddingRight: 60,
     },
 
     city_attractions_option_button_distance_container: {
@@ -110,6 +135,20 @@ const styles = StyleSheet.create({
         width: 100,
         backgroundColor: 'black',
         borderBottomRightRadius: 10,
+    },
+    city_attractions_option_button_icon_container: {
+        width: 38,
+        height: 38,
+        backgroundColor: '#485683',
+        alignSelf: 'flex-end',
+        position: 'absolute',
+        marginTop: 60,
+        borderTopLeftRadius: 5,
+        borderBottomLeftRadius: 5,
+    },
+    city_attractions_option_button_icon: {
+        alignSelf: 'center',
+        color: 'white'
     }
 });
 

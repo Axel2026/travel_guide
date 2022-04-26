@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 
 import {
+    ActivityIndicator,
     ScrollView,
     StyleSheet, Text, View,
 } from 'react-native';
 import CityOptionButton from "./CityOptionButton";
 import axios from "axios";
-import Geolocation from '@react-native-community/geolocation';
+import Geolocation from 'react-native-geolocation-service';
 import {getPreciseDistance} from "geolib";
 
 
@@ -28,6 +29,11 @@ const CityChoice = ({navigation}) => {
             (error) => {
                 console.warn(error.message);
             },
+            {
+                enableHighAccuracy: true,
+                timeout: 15000,
+                maximumAge: 10000
+            }
         )
     }
 
@@ -58,7 +64,7 @@ const CityChoice = ({navigation}) => {
             </ScrollView>
         );
     } else {
-        return <View></View>
+        return <ActivityIndicator size="large" color="#485683"/>
     }
 };
 
