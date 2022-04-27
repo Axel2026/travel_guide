@@ -38,7 +38,7 @@ const CityChoice = ({navigation}) => {
     }
 
     function getCities(currentLocation) {
-        axios.get(`http://10.0.2.2:3001/api/cities`).then((response) => {
+        axios.get(`https://travel-guide-app-server.herokuapp.com/api/cities`).then((response) => {
             setCities(response.data.sort((a, b) => (getPreciseDistance(currentLocation, {
                 latitude: a.coordinates.lat,
                 longitude: a.coordinates.lon

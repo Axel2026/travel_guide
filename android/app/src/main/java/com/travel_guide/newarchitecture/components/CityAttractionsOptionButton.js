@@ -5,7 +5,7 @@ import {getPreciseDistance} from "geolib";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 
 
-const CityAttractionsOptionButton = ({name, coordinates, image, navigation, description, type, currentLocation, address, phoneNumber, website}) => {
+const CityAttractionsOptionButton = ({id, name, coordinates, image, navigation, description, type, currentLocation, address, phoneNumber, website}) => {
 
     const [distance, setDistance] = useState()
 
@@ -17,6 +17,7 @@ const CityAttractionsOptionButton = ({name, coordinates, image, navigation, desc
 
     function navigateToAttractionDetails() {
         navigation.navigate('CityAttractionDetails', {
+            attractionId: id,
             attractionName: name,
             attractionImage: image,
             attractionDescription: description,

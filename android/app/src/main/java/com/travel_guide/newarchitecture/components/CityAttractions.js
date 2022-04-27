@@ -23,8 +23,8 @@ const CityAttractions = ({navigation, route}) => {
         {key: 'displayAllAttractions', title: 'Wszystkie'},
         {key: 'displayMonumentTypeAttractions', title: 'Zabytki'},
         {key: 'displayFoodTypeAttractions', title: 'Jedzenie'},
-        {key: 's', title: 'Noclegi'},
-        {key: 'd', title: 'Galerie'},
+        {key: 'displayAccommodationTypeAttractions', title: 'Noclegi'},
+        {key: 'displayStoreTypeAttractions', title: 'Sklepy'},
     ]);
 
     useEffect(() => {
@@ -76,12 +76,30 @@ const CityAttractions = ({navigation, route}) => {
         }
     }
 
+    function displayAccommodationTypeAttractions() {
+        if (!isLoading) {
+            return <CityAttractionsFiltered currentLocation={currentLocation}
+                                            navigation={navigation} type={"accommodation"} cityId={cityId}/>
+        } else {
+            return <ActivityIndicator size="large" color="#485683"/>
+        }
+    }
+
+    function displayStoreTypeAttractions() {
+        if (!isLoading) {
+            return <CityAttractionsFiltered currentLocation={currentLocation}
+                                            navigation={navigation} type={"store"} cityId={cityId}/>
+        } else {
+            return <ActivityIndicator size="large" color="#485683"/>
+        }
+    }
+
     const renderScene = SceneMap({
         displayAllAttractions: displayAllAttractions,
         displayMonumentTypeAttractions: displayMonumentTypeAttractions,
         displayFoodTypeAttractions: displayFoodTypeAttractions,
-        s: displayFoodTypeAttractions,
-        d: displayFoodTypeAttractions,
+        displayAccommodationTypeAttractions: displayAccommodationTypeAttractions,
+        displayStoreTypeAttractions: displayStoreTypeAttractions,
     });
 
     const renderTabBar = props => (
@@ -124,7 +142,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#485683',
         marginBottom: 5,
         fontFamily: 'helvetica-rounded-bold',
-        elevation: 0,
     }
 })
 

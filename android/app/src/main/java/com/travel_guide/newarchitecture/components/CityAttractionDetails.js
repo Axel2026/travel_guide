@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react';
 
 import {Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import axios from "axios";
 
 
 const CityAttractionDetails = ({navigation, route}) => {
 
+    const id = route.params.attractionId;
     const name = route.params.attractionName;
     const image = route.params.attractionImage;
     const description = route.params.attractionDescription;
@@ -19,7 +21,19 @@ const CityAttractionDetails = ({navigation, route}) => {
         navigation.setOptions({
             title: name
         })
+        addClickToAttraction();
     }, [])
+
+
+    function addClickToAttraction() {
+        axios.put(`https://travel-guide-app-server.herokuapp.com/api/cities/attractions/addclick/${id}`)
+            .then(() => {
+                console.log("Added click to database")
+            })
+            .catch((error) =>
+                console.warn(error))
+    }
+
 
     function navigateToMap() {
         navigation.navigate('AttractionMap', {
@@ -102,6 +116,7 @@ const styles = StyleSheet.create({
     attraction_details_description_text: {
         fontSize: 20,
         fontFamily: 'helvetica-rounded-bold',
+        textAlign: 'justify'
     },
     attraction_details_map_button_container: {
         backgroundColor: '#ff8c00',
@@ -112,7 +127,7 @@ const styles = StyleSheet.create({
         elevation: 3,
     },
     attraction_details_map_button_text: {
-        fontSize: 30,
+        fontSize: 25,
         color: 'white',
         alignSelf: 'center',
         fontFamily: 'helvetica-rounded-bold',

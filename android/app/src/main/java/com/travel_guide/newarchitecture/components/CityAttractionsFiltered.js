@@ -22,7 +22,7 @@ const CityAttractionsFiltered = (props) => {
     }, [cityId])
 
     function getAttractions() {
-        axios.get(`http://10.0.2.2:3001/api/cities/attractions/city/${cityId}`).then((response) => {
+        axios.get(`https://travel-guide-app-server.herokuapp.com/api/cities/attractions/city/${cityId}`).then((response) => {
             setCityAttractions(response.data.sort((a, b) => (getPreciseDistance(currentLocation, {
                 latitude: a.coordinates.lat,
                 longitude: a.coordinates.lon
