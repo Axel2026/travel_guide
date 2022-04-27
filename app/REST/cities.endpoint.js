@@ -6,6 +6,10 @@ const citiesEndpoint = (router) => {
         business.getCitiesManager().getCities(res)
     });
 
+    router.get('/api/cities/:cityId', (req, res) => {
+        business.getCitiesManager().getOneCity(req.params.cityId, res)
+    });
+
 };
 
 export default citiesEndpoint;

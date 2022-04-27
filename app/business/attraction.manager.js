@@ -13,10 +13,12 @@ function attractionManager() {
             });
     }
 
-    function getAttractionsByCityType(type, response) {
-        attractionDAO.model.find({type: type})
+    function addClickToAttraction(attractionId, response) {
+        attractionDAO.model.updateOne(
+            {"_id": attractionId},
+            {$inc: {"clicks": 1}})
             .then((data) => {
-                response.json(data);
+                response.json("Clicks updated: " + data.acknowledged);
             })
             .catch((error) => {
                 console.log('error: ', error);
@@ -25,7 +27,7 @@ function attractionManager() {
 
     return {
         getAttractionsByCityId: getAttractionsByCityId,
-        getAttractionsByCityType: getAttractionsByCityType
+        addClickToAttraction: addClickToAttraction
     };
 }
 

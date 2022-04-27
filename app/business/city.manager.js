@@ -13,8 +13,19 @@ function cityManager() {
             });
     }
 
+    function getOneCity(cityId, response) {
+        cityDAO.model.find({"_id": cityId})
+            .then((data) => {
+                response.json(data);
+            })
+            .catch((error) => {
+                console.log('error:  ', error);
+            });
+    }
+
     return {
-        getCities: getCities
+        getCities: getCities,
+        getOneCity: getOneCity
     };
 }
 

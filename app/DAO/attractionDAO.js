@@ -12,6 +12,7 @@ const attractionSchema = new mongoose.Schema({
     address: {type: String, required: false, unique: false},
     phone_number: {type: String, required: false, unique: false},
     website: {type: String, required: false, unique: false},
+    clicks: {type: Number, required: false, unique: false},
 }, {
     collection: 'Attraction'
 });

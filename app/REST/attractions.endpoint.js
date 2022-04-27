@@ -6,8 +6,8 @@ const attractionsEndpoint = (router) => {
         business.getAttractionManager().getAttractionsByCityId(req.params.cityId, res)
     });
 
-    router.get('/api/cities/attractions/type/:type', (req, res) => {
-        business.getAttractionManager().getAttractionsByCityType(req.params.type, res)
+    router.put('/api/cities/attractions/addclick/:attractionId', (req, res) => {
+        business.getAttractionManager().addClickToAttraction(req.params.attractionId, res)
     });
 };
 
