@@ -9,7 +9,7 @@ function cityManager() {
                 response.json(data);
             })
             .catch((error) => {
-                console.log('error: ', error);
+                console.log('error:  ', error);
             });
     }
 
